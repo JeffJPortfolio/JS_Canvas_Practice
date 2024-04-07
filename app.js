@@ -17,7 +17,7 @@ const colors = [
     "#27ae60",
 ]
 
-let isPainting = flase;
+let isPainting = false;
 
 function onMove(event){
     if (isPainting) {
@@ -39,4 +39,4 @@ function onMouseUp(){
 
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown) ;
-canvas.addEventListener("mouseup", onMouseUp) ;
+document.addEventListener("mouseup", onMouseUp) ;
