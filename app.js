@@ -17,13 +17,26 @@ const colors = [
     "#27ae60",
 ]
 
-function onClick(event){
-    ctx.beginPath() ;
-    ctx.moveTo(0, 0) ;
-    const color = colors[Math.floor(Math.random() *colors.length)] ;
-    ctx.strokeStyle = color;
-    ctx.lineTo(event.offsetX, event.offsetY) ;
-    ctx.stroke() ;
+let isPainting = flase;
+
+function onMove(event){
+    if (isPainting) {
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke()
+        return;
+    }
+    ctx.moveTo(event.offsetX, event.offsetY) ;
+
 }
 
-canvas.addEventListener("click", onClick);
+function onMouseDown(){
+    isPainting = true ;
+}
+
+function onMouseUp(){
+    isPainting = false ;
+}
+
+canvas.addEventListener("mousemove", onMove);
+canvas.addEventListener("mousedown", onMouseDown) ;
+canvas.addEventListener("mouseup", onMouseUp) ;
